@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>scss中使用/deep/深度选择器报错 | code blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-1PWBM2M60V" async="true"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1PWBM2M60V');
+      </script>
+    <link rel="icon" href="/logo.jpg">
+    <meta name="description" content="在带有scoped属性的style中书写样式时，无法作用影响到子组件中的样式，此时我们会使用到deep深度选择器，来解决此问题，我们在使用less预处理器，能正常使用，但是在scss预处理器中会报错。">
+    
+    <link rel="preload" href="/assets/css/0.styles.86dd0b18.css" as="style"><link rel="preload" href="/assets/js/app.f28414b0.js" as="script"><link rel="preload" href="/assets/js/3.cd3babe6.js" as="script"><link rel="preload" href="/assets/js/2.51c929c8.js" as="script"><link rel="preload" href="/assets/js/7.5e1430f7.js" as="script"><link rel="prefetch" href="/assets/js/4.415353eb.js"><link rel="prefetch" href="/assets/js/5.e59a677e.js"><link rel="prefetch" href="/assets/js/6.00c04216.js"><link rel="prefetch" href="/assets/js/8.c9e97134.js"><link rel="prefetch" href="/assets/js/9.52a5c2c6.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.86dd0b18.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container vuepress-theme-simple" data-v-86a98e5e><header class="header" data-v-86a98e5e><a href="/" title="在带有scoped属性的style中书写样式时，无法作用影响到子组件中的样式，此时我们会使用到deep深度选择器，来解决此问题，我们在使用less预处理器，能正常使用，但是在scss预处理器中会报错。" class="site-name router-link-active" data-v-86a98e5e>
+      code blog
+    </a> <div class="nav-wrapper" data-v-86a98e5e><ul class="nav" data-v-86a98e5e><li data-v-86a98e5e><a class="borderFade" data-v-86a98e5e>返回首页</a></li> <li data-v-86a98e5e><a href="https://github.com/luyao514/vuepress-blog" class="borderFade" data-v-86a98e5e>GitHub</a></li> <li data-v-86a98e5e><a href="https://blog.csdn.net/qq_48093489?spm=1000.2115.3001.5343" class="borderFade" data-v-86a98e5e>CSDN</a></li></ul> <div class="search-box" data-v-86a98e5e><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div></div> <div style="clear: both" data-v-86a98e5e></div> <!----></header> <section class="post-view" data-v-86a98e5e><div class="post-head"><h1 class="post-title">
+      scss中使用/deep/深度选择器报错
+    </h1> <time datetime="2021-4-1 8:00:00 ├F10: AM┤" title="2021-4-1 8:00:00 ├F10: AM┤" pubdate="pubdate" class="post-date">
+  4 周前
+</time></div> <div class="content__default"><p>@<a href="scss%E4%B8%AD%E4%BD%BF%E7%94%A8/deep/%E6%B7%B1%E5%BA%A6%E9%80%89%E6%8B%A9%E5%99%A8%E6%8A%A5%E9%94%99">TOC</a></p> &quot;&gt;
+<h1 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h1> <p>在带有scoped属性的style中书写样式时，无法作用影响到子组件中的样式，此时我们会使用到deep深度选择器，来解决此问题，我们在使用less预处理器，能正常使用，但是在scss预处理器中会报错。</p> <h1 id="一、代码"><a href="#一、代码" class="header-anchor">#</a> 一、代码</h1> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">&quot;scss&quot;</span> scoped<span class="token operator">&gt;</span>
+<span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">deep</span><span class="token regex-delimiter">/</span></span> <span class="token punctuation">.</span>el<span class="token operator">-</span>dialog__header <span class="token punctuation">{</span>
+  background<span class="token operator">-</span>color<span class="token operator">:</span> #<span class="token number">81</span>ecec <span class="token operator">!</span>important<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+</code></pre></div><h1 id="二、报错"><a href="#二、报错" class="header-anchor">#</a> 二、报错</h1> <div class="language-javascript extra-class"><pre class="language-javascript"><code>SassError<span class="token operator">:</span> expected selector<span class="token punctuation">.</span>
+    ╷
+<span class="token number">211</span> │ <span class="token operator">/</span>deep<span class="token operator">/</span> <span class="token punctuation">.</span>el<span class="token operator">-</span>dialog__header<span class="token punctuation">{</span>
+    │ <span class="token operator">^</span>
+</code></pre></div><h1 id="三、解决办法"><a href="#三、解决办法" class="header-anchor">#</a> 三、解决办法</h1> <p>使用::v-deep深度选择器，能够解决在scss中无法解析/deep/选择器的问题</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">&quot;scss&quot;</span> scoped<span class="token operator">&gt;</span>
+<span class="token operator">:</span><span class="token operator">:</span>v<span class="token operator">-</span>deep <span class="token punctuation">.</span>el<span class="token operator">-</span>dialog__header <span class="token punctuation">{</span>
+  background<span class="token operator">-</span>color<span class="token operator">:</span> #<span class="token number">81</span>ecec <span class="token operator">!</span>important<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">:</span><span class="token operator">:</span>v<span class="token operator">-</span>deep <span class="token punctuation">.</span>el<span class="token operator">-</span>button<span class="token operator">--</span>primary <span class="token punctuation">{</span>
+  background<span class="token operator">-</span>color<span class="token operator">:</span> #<span class="token number">81</span>ecec<span class="token punctuation">;</span>
+  border<span class="token operator">-</span>color<span class="token operator">:</span> #<span class="token number">81</span>ecec<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+</code></pre></div><h1 id="四、总结"><a href="#四、总结" class="header-anchor">#</a> 四、总结</h1> <p>在vue中，&gt;&gt;&gt;是深度选择器，可以作用到子组件中的样式，/deep/和::v-deep都是&gt;&gt;&gt;的别名，在scss中不识别/deep/, 可以使用::v-deep</p></div> <div></div></section> <footer class="footer" data-v-86a98e5e>
+  © 2021
+  <i class="icon-user"></i> <a href="https://github.com/luyao514" target="_blank">
+    Lu Yao
+  </a> <br></footer></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.f28414b0.js" defer></script><script src="/assets/js/3.cd3babe6.js" defer></script><script src="/assets/js/2.51c929c8.js" defer></script><script src="/assets/js/7.5e1430f7.js" defer></script>
+  </body>
+</html>
